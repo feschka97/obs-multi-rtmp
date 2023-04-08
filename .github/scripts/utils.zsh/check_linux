@@ -1,13 +1,5 @@
 autoload -Uz log_info log_status log_error log_debug log_warning
 
-log_debug 'Checking for apt-get...'
-if (( ! ${+commands[apt-get]} )) {
-  log_error 'No apt-get command found. Please install apt'
-  return 2
-} else {
-  log_debug "Apt-get located at ${commands[apt-get]}"
-}
-
 local -a dependencies=("${(f)$(<${SCRIPT_HOME}/.Aptfile)}")
 local -a install_list
 local binary
@@ -32,5 +24,5 @@ log_debug "List of dependencies to install: ${install_list}"
 if (( ${#install_list} )) {
   if (( ! ${+CI} )) log_warning 'Dependency installation via apt may require elevated privileges'
 
-  sudo apt-get -y install ${install_list} ${_quiet[(( (_loglevel == 0) + 1 ))]}
+  sudo pamac install ${install_list} ${_quiet[(( (_loglevel == 0) + 1 ))]}
 }

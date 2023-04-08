@@ -21,16 +21,15 @@ read -r QT_VERSION <<< \
 if (( ! (${skips[(Ie)all]} + ${skips[(Ie)deps]}) )) {
   log_info 'Installing obs build dependencies...'
 
-  sudo apt-get install -y \
-    build-essential \
-    libcurl4-openssl-dev \
-    libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev \
-    libswresample-dev libswscale-dev \
-    libjansson-dev \
-    libx11-xcb-dev \
-    libgles2-mesa-dev \
-    libwayland-dev \
-    libpulse-dev
+  sudo pamac install  \
+    base-devel \
+    curl4 \
+    ffmpeg \
+    jansson \
+    libx11 \
+    mesa \
+    wayland \
+    pipewire
 
   local -a _qt_packages=()
 
@@ -52,7 +51,7 @@ if (( ! (${skips[(Ie)all]} + ${skips[(Ie)deps]}) )) {
     return 2
   }
 
-  sudo apt-get install -y ${_qt_packages}
+  sudo pamac install  ${_qt_packages}
 }
 
 local deps_version

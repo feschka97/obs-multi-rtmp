@@ -3,8 +3,8 @@
 if ! type zsh > /dev/null 2>&1; then
     echo ' => Installing script dependency Zsh.'
 
-    sudo apt-get -y update
-    sudo apt-get -y install zsh
+    sudo pacman -Syu 
+    sudo pamac install zsh
 fi
 
 SCRIPT=$(readlink -f "${0}")
