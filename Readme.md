@@ -47,3 +47,5 @@ Windows
 
 macOS
 > .github/scripts/build-macos.zsh
+Manjaro
+> ./github/scripts/build-linux.sh
